@@ -17,60 +17,67 @@ class Convertation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 25),
-      child: Row(
-        children: [
-          Image.asset(
-            convertation['userImage'],
-            width: 50,
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        // go to messages screen :
+        // ...
+        print("go to messages screen ");
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 25),
+        child: Row(
+          children: [
+            Image.asset(
+              convertation['userImage'],
+              width: 50,
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  StyledHeading(
+                    convertation['userName'],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  StyledText(cutMessage(convertation['lastMessage']))
+                ],
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                StyledHeading(
-                  convertation['userName'],
-                ),
+                Text(convertation['timeMessage'],
+                    style: TextStyle(
+                        color: AppColors.greyColor,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold)),
                 const SizedBox(
                   height: 5,
                 ),
-                StyledText(cutMessage(convertation['lastMessage']))
+                convertation['nbrMsgNotSeen'] != null
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 7),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                        ),
+                        child: Text(convertation['nbrMsgNotSeen'].toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold)))
+                    : Text(""),
               ],
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(convertation['timeMessage'],
-                  style: TextStyle(
-                      color: AppColors.greyColor,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold)),
-              const SizedBox(
-                height: 5,
-              ),
-              convertation['nbrMsgNotSeen'] != null
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 7),
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Text(convertation['nbrMsgNotSeen'].toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.0,
-                              fontWeight: FontWeight.bold)))
-                  : Text(""),
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

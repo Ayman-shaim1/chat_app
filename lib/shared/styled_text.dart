@@ -2,43 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StyledText extends StatelessWidget {
-  const StyledText(this.text, {super.key});
-  final String text;
+  StyledText(this.text, {this.color, super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style:
-          GoogleFonts.lato(textStyle: Theme.of(context).textTheme.bodyMedium),
-    );
-  }
-}
-
-class StyledHeading extends StatelessWidget {
-  const StyledHeading(this.text, {super.key});
   final String text;
+  Color? color = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.lato(
-          textStyle: Theme.of(context).textTheme.headlineMedium),
+          textStyle: Theme.of(context).textTheme.bodyMedium, color: color),
     );
   }
 }
 
-class StyledTitle extends StatelessWidget {
-  const StyledTitle(this.text, {super.key});
+class StyledHeading extends StatelessWidget {
+  StyledHeading(this.text, {this.color, super.key});
+
   final String text;
+  Color? color = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style:
-          GoogleFonts.lato(textStyle: Theme.of(context).textTheme.titleMedium),
+      style: GoogleFonts.lato(
+          textStyle: Theme.of(context).textTheme.headlineMedium, color: color),
+    );
+  }
+}
+
+class StyledTitle extends StatelessWidget {
+  StyledTitle(this.text, {this.color, super.key});
+  final String text;
+  Color? color = Colors.black;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.lato(
+          textStyle: Theme.of(context).textTheme.titleMedium, color: color),
     );
   }
 }

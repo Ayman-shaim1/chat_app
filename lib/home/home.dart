@@ -1,7 +1,8 @@
 import 'package:chat_app/home/convertation_item.dart';
 import 'package:chat_app/shared/styled_text.dart';
+import 'package:chat_app/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,9 +12,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   List<Map<String, dynamic>> lstConvertation = [
     {
-      "id":1,
+      "id": 1,
       "userImage": "assets/img/image1.png",
       "userName": "Jhon Doe",
       "lastMessage": "Hello world, Hello world, Hello world,",
@@ -21,7 +23,7 @@ class _HomeState extends State<Home> {
       "nbrMsgNotSeen": 2,
     },
     {
-      "id":2,
+      "id": 2,
       "userImage": "assets/img/image2.png",
       "userName": "Steve Smith",
       "lastMessage":
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
       // "nbrMsgNotSeen": 2,
     },
     {
-      "id":3,
+      "id": 3,
       "userImage": "assets/img/image3.png",
       "userName": "Jane Doe",
       "lastMessage": "Hello world, Hello world, Hello world,",
@@ -48,7 +50,7 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const StyledTitle("Messages"),
+              StyledTitle("Messages"),
               const SizedBox(
                 height: 50,
               ),
@@ -56,10 +58,73 @@ class _HomeState extends State<Home> {
                 child: ListView.builder(
                   itemCount: lstConvertation.length,
                   itemBuilder: (_, index) {
-                    return Dismissible(
-                      key: ValueKey(lstConvertation[index]["id"]),
-                      child: Convertation(lstConvertation[index]),
-                    );
+                    return Slidable(
+                        key: ValueKey(lstConvertation[index]["id"]),
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          dismissible: DismissiblePane(onDismissed: () {
+                            // delete item ...
+                            print("delete item from dimiss");
+                          }),
+                          children: [
+                            // A SlidableAction can have an icon and/or a label.
+                            SlidableAction(
+                              onPressed: (context) {
+                                // delete item : ...
+                                print("delete item from click");
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      // show dialog :
+                                      return AlertDialog(
+                                        title: StyledHeading("Confirmation"),
+                                        content: StyledText(
+                                            "Are you sure you want to delete this conversation ?"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              // show snackbar
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: StyledHeading(
+                                                  'Convertation deleted.',
+                                                  color: Colors.white,
+                                                ),
+                                                showCloseIcon: true,
+                                                backgroundColor:
+                                                    AppColors.successColor,
+                                                duration:
+                                                    const Duration(seconds: 2),
+                                              ));
+                                              // close dialog :
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: StyledText(
+                                              'Confirm',
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              // close dialog :
+
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: StyledText(
+                                              'Close',
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              backgroundColor: AppColors.dangerColor,
+                              foregroundColor: Colors.white,
+                              icon: Icons.delete,
+                              label: 'Delete',
+                            ),
+                          ],
+                        ),
+                        child: Convertation(lstConvertation[index]));
                   },
                 ),
               )

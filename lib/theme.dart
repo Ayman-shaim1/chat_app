@@ -9,8 +9,10 @@ class AppColors {
 
   static Color greyColor = const Color.fromRGBO(35, 35, 35, 1);
 
-  static Color successColor = const Color.fromRGBO(9, 149, 110, 1);
+  static Color successColor = const Color.fromRGBO(75, 191, 115, 1);
+  static Color dangerColor = const Color.fromRGBO(217, 83, 79, 1);
   static Color highlightColor = const Color.fromRGBO(212, 172, 13, 1);
+
 }
 
 ThemeData primaryTheme = ThemeData(
@@ -22,7 +24,7 @@ ThemeData primaryTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     // app bar theme color :
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.secondaryAccent,
+      backgroundColor: AppColors.primaryColor,
       surfaceTintColor: Colors.transparent,
       centerTitle: true,
     ),
@@ -53,9 +55,9 @@ ThemeData primaryTheme = ThemeData(
 
     // input decoration theme :
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: AppColors.secondaryColor.withOpacity(0.5),
-      border: InputBorder.none,
+      // filled: true,
+      // fillColor: AppColors.secondaryColor.withOpacity(0.5),
+      // border: InputBorder.none,
     ),
 
     // dialog theme  :

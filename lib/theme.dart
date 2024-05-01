@@ -14,67 +14,67 @@ class AppColors {
 }
 
 ThemeData primaryTheme = ThemeData(
-  // seed color :
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: AppColors.primaryColor,
-  ),
-  // scaffold color :
-  scaffoldBackgroundColor: Colors.white,
-  // app bar theme color :
-  appBarTheme: AppBarTheme(
-    backgroundColor: AppColors.secondaryAccent,
-    surfaceTintColor: Colors.transparent,
-    centerTitle: true,
-  ),
-  // text theme :
-  textTheme: const TextTheme().copyWith(
-    bodyMedium:
-        TextStyle(fontSize: 14, letterSpacing: 1, color: AppColors.greyColor),
-    headlineMedium: TextStyle(
-      fontSize: 18,
-      letterSpacing: 1,
-      fontWeight: FontWeight.bold,
+    // seed color :
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primaryColor,
     ),
-    titleMedium: TextStyle(
-      fontSize: 28,
-      letterSpacing: 1,
-      fontWeight: FontWeight.bold,
+    // scaffold color :
+    scaffoldBackgroundColor: Colors.white,
+    // app bar theme color :
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.secondaryAccent,
+      surfaceTintColor: Colors.transparent,
+      centerTitle: true,
     ),
-  ),
-
-  // card theme :
-  cardTheme: CardTheme(
-    color: AppColors.secondaryColor.withOpacity(0.5),
-    surfaceTintColor: Colors.transparent,
-    shape: const RoundedRectangleBorder(),
-    shadowColor: Colors.transparent,
-    margin: const EdgeInsets.only(bottom: 16),
-  ),
-
-  // input decoration theme :
-  inputDecorationTheme: InputDecorationTheme(
-    filled: true,
-    fillColor: AppColors.secondaryColor.withOpacity(0.5),
-    border: InputBorder.none,
-  ),
-
-  // dialog theme  :
-  dialogTheme: DialogTheme(
-    backgroundColor: AppColors.secondaryAccent,
-    surfaceTintColor: Colors.transparent,
-  ),
-  // floatin action button theme :
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: AppColors.primaryColor,
-    foregroundColor: Colors.white,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(100.0),
+    // text theme :
+    textTheme: const TextTheme().copyWith(
+      bodyMedium:
+          TextStyle(fontSize: 14, letterSpacing: 1, color: AppColors.greyColor),
+      headlineMedium: TextStyle(
+        fontSize: 18,
+        letterSpacing: 1,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 28,
+        letterSpacing: 1,
+        fontWeight: FontWeight.bold,
+      ),
     ),
-  ),
 
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: AppColors.primaryColor,
-    // selectedLabelStyle: TextStyle(),
-  )
+    // card theme :
+    cardTheme: CardTheme(
+      color: AppColors.secondaryColor.withOpacity(0.5),
+      surfaceTintColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(),
+      shadowColor: Colors.transparent,
+      margin: const EdgeInsets.only(bottom: 16),
+    ),
 
-);
+    // input decoration theme :
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.secondaryColor.withOpacity(0.5),
+      border: InputBorder.none,
+    ),
+
+    // dialog theme  :
+    dialogTheme: DialogTheme(
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+    ),
+    // floatin action button theme :
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primaryColor,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(100.0),
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: AppColors.primaryColor,
+      // selectedLabelStyle: TextStyle(),
+    ));

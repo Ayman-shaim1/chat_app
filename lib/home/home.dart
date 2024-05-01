@@ -1,6 +1,5 @@
 import 'package:chat_app/home/convertation_item.dart';
 import 'package:chat_app/shared/styled_text.dart';
-import 'package:chat_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,57 +11,64 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Map<String, dynamic>> lstConvertation = [
+    {
+      "id":1,
+      "userImage": "assets/img/image1.png",
+      "userName": "Jhon Doe",
+      "lastMessage": "Hello world, Hello world, Hello world,",
+      "timeMessage": "12:30",
+      "nbrMsgNotSeen": 2,
+    },
+    {
+      "id":2,
+      "userImage": "assets/img/image2.png",
+      "userName": "Steve Smith",
+      "lastMessage":
+          "Hello world, Hello world, Hello world, Hello world, Hello world, Hello world,Hello world, Hello world, Hello world,",
+      "timeMessage": "11:30",
+      // "nbrMsgNotSeen": 2,
+    },
+    {
+      "id":3,
+      "userImage": "assets/img/image3.png",
+      "userName": "Jane Doe",
+      "lastMessage": "Hello world, Hello world, Hello world,",
+      "timeMessage": "10:30",
+      // "nbrMsgNotSeen": 2,
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                StyledTitle("Messages"),
-                const SizedBox(
-                  height: 50,
-                ),
-                Dismissible(
-                  key: ValueKey('hello'),
-                  direction: DismissDirection.endToStart,
-                  background: Container(
-                    color: Colors.red,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: Icon(Icons.delete, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  child: Convertation(),
-                  onDismissed: (direction) {
-                    // delete messages (convertation) :
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const StyledTitle("Messages"),
+              const SizedBox(
+                height: 50,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: lstConvertation.length,
+                  itemBuilder: (_, index) {
+                    return Dismissible(
+                      key: ValueKey(lstConvertation[index]["id"]),
+                      child: Convertation(lstConvertation[index]),
+                    );
                   },
                 ),
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message_sharp),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {},
       ),
     );

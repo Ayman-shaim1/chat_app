@@ -1,3 +1,4 @@
+import 'package:chat_app/messages/messages.dart';
 import 'package:chat_app/shared/styled_text.dart';
 import 'package:chat_app/theme.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,11 @@ class Convertation extends StatelessWidget {
       onTap: () {
         // go to messages screen :
         // ...
-        print("go to messages screen ");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => const Messages(),
+            ));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 25),

@@ -1,4 +1,5 @@
 import 'package:chat_app/home/convertation_item.dart';
+import 'package:chat_app/new/new.dart';
 import 'package:chat_app/shared/styled_text.dart';
 import 'package:chat_app/theme.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   List<Map<String, dynamic>> lstConvertation = [
     {
       "id": 1,
@@ -134,7 +134,13 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (ctx) => const New(),
+              ));
+        },
       ),
     );
   }

@@ -1,8 +1,7 @@
+import 'package:chat_app/messages/message_item.dart';
 import 'package:chat_app/shared/styled_text.dart';
 import 'package:chat_app/theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Messages extends StatefulWidget {
@@ -29,6 +28,21 @@ class _MessagesState extends State<Messages> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    TextButton(
+                        style: ButtonStyle(
+                          padding:
+                              MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            const EdgeInsets.symmetric(
+                                horizontal: 0, vertical: 0),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(Icons.arrow_back)),
+                    const SizedBox(
+                      width: 35,
+                    ),
                     Image.asset(
                       "assets/img/image1.png",
                       width: 50,
@@ -77,17 +91,19 @@ class _MessagesState extends State<Messages> {
               // Footer :
               Row(
                 children: [
-                  TextField(
-                    decoration: const InputDecoration(
-                      hintText: "enter message ...",
-                    ),
-                    style: GoogleFonts.lato(
-                      textStyle: Theme.of(context).textTheme.bodyMedium,
+                  Flexible(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        hintText: "enter message ...",
+                      ),
+                      style: GoogleFonts.lato(
+                        textStyle: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Text("hello world"),
+                    child: Icon(Icons.send, color: AppColors.primaryColor),
                   ),
                 ],
               ),
@@ -99,24 +115,3 @@ class _MessagesState extends State<Messages> {
   }
 }
 
-class Message extends StatelessWidget {
-  const Message({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-          margin: const EdgeInsets.only(bottom: 15),
-          width: MediaQuery.of(context).size.width * 0.8,
-          decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(5)),
-          padding: const EdgeInsets.all(16),
-          child: StyledText("Hello world,Hello world,Hello world,Hello world",
-              color: Colors.white)),
-    );
-  }
-}
